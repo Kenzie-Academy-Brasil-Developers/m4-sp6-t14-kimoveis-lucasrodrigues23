@@ -6,7 +6,7 @@ import { User } from "../entities";
 import { AppError } from "../errors";
 import { tUserReturn } from "../interfaces/user.interfaces";
 
-export const valideteDataMiddleware = (schema: ZodTypeAny) => async (req: Request, res: Response, next: NextFunction) => {
+export const valideteDataCreateUserMiddleware = (schema: ZodTypeAny) => async (req: Request, res: Response, next: NextFunction) => {
 
     const reqEmail: string = req.body.email
 
@@ -19,7 +19,7 @@ export const valideteDataMiddleware = (schema: ZodTypeAny) => async (req: Reques
     })
 
     if (findUser) {
-        throw new AppError('Email already exists.', 404)
+        throw new AppError('Email already exists.', 409)
     }
 
     const validateData: tUserReturn = schema.parse(req.body)

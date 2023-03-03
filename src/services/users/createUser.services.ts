@@ -4,11 +4,11 @@ import { User } from "../../entities"
 import { tUserCreateData, tUserReturn } from "../../interfaces/user.interfaces"
 import { returnUserSchema } from "../../schemas/users.schema"
 
-export const createUserService = async (userData: tUserCreateData): Promise<tUserReturn> => {
+export const createUserService = async (userData: any): Promise<tUserReturn> => {
 
     const userRepository: Repository<User> = AppDataSource.getRepository(User)
 
-    const user: User = userRepository.create(userData)
+    const user: any = userRepository.create(userData)
 
     await userRepository.save(user)
 

@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne, JoinColumn, OneToMany, BeforeInsert, AfterLoad } from "typeorm";
 import { Address } from "./address.entity";
 import { Category } from "./category.entity";
 
@@ -12,7 +12,7 @@ export class RealEstate {
     sold: boolean
 
     @Column({ type: 'decimal', precision: 12, scale: 2 })
-    value: number
+    value: number | string
 
     @Column({ type: 'integer' })
     size: number
@@ -23,11 +23,11 @@ export class RealEstate {
     @UpdateDateColumn()
     updatedAt: string
 
-    @OneToOne(() => Address)
+    @OneToOne(() => Address, { nullable: true })
     @JoinColumn()
-    address: Address
+    address?: Address | null | undefined
 
-    @ManyToOne(() => Category, { nullable: true })
-    categories?: Category | null | undefined
+    @OneToMany(() => Category, categories => categories.id)
+    categories: Category[]
 
 }

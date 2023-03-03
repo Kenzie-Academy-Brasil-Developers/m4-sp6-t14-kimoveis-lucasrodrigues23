@@ -12,7 +12,6 @@ export const listUsersService = async (): Promise<tListUsers> => {
     const findUsers: Array<User> = await userRepository.find()
 
     const listUsers: tListUsers = listUsersSchema.parse(findUsers)
-    console.log(listUsersSchema, listUsers);
     
     return listUsers
 }

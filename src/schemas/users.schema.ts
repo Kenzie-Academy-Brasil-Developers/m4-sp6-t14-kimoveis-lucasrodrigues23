@@ -10,7 +10,7 @@ export const createUserSchema = z.object({
     })
 })
 
-export const updateUserSchamar = createUserSchema.partial()
+export const updateUserSchama = createUserSchema.partial()
 
 export const returnUserSchema = createUserSchema.extend({
     id: z.number(),

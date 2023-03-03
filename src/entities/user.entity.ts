@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BeforeInsert, Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('users')
 
@@ -13,17 +13,18 @@ export class User {
     email: string
 
     @Column({ type: 'boolean', default: false })
-    admin?: boolean | null | undefined
+    admin: boolean
 
     @Column({ length: 120 })
     password: string
 
-    @CreateDateColumn({ name: 'createdAt' })
-    createdAt!: Date;
+    @CreateDateColumn()
+    createdAt!: string;
 
-    @UpdateDateColumn({ name: 'updatedAt' })
-    updatedAt!: Date;
+    @UpdateDateColumn()
+    updatedAt!: string;
 
-    @DeleteDateColumn({ name: 'deletedAt' })
+    @DeleteDateColumn()
     deletedAt: string
+
 }

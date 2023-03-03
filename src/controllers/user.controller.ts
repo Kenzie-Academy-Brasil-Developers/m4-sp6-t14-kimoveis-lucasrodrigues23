@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
+import { tUserReturn } from "../interfaces/user.interfaces";
 import { createUserService } from "../services/users/createUser.services";
+import softDeleteUserService from "../services/users/deleteUser.services";
 import { listUsersService } from "../services/users/listUsers.services";
+import updateUserService from "../services/users/updateUser.services";
 
 export const createUserController = async (req: Request, res: Response): Promise<Response> => {
 
@@ -18,10 +21,17 @@ export const listUsersController = async (req: Request, res: Response): Promise<
     return res.status(200).json(listUsers)
 }
 
-export const updateUserController = async (rwq: Request, res: Response): Promise<Response> => {
-    return res.json()
+export const updateUserController = async (req: Request, res: Response): Promise<Response> => {
+
+    const updatedUser: tUserReturn = await updateUserService(req)
+
+    return res.status(200).json(updatedUser)
 }
 
-export const softDeleteUserController = async (rwq: Request, res: Response): Promise<Response> => {
-    return res.json()
+export const softDeleteUserController = async (req: Request, res: Response): Promise<Response> => {
+    const userId: number = Number(req.params.id)
+
+    await softDeleteUserService(userId)
+
+    return res.status(200).send()
 }
