@@ -33,5 +33,5 @@ export const softDeleteUserController = async (req: Request, res: Response): Pro
 
     await softDeleteUserService(userId)
 
-    return res.status(200).send()
+    return res.status(204).send()
 }

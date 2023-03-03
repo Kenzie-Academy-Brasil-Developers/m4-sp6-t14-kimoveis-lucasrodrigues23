@@ -19,7 +19,7 @@ export const valideteDataCreateUserMiddleware = (schema: ZodTypeAny) => async (r
     })
 
     if (findUser) {
-        throw new AppError('Email already exists.', 409)
+        throw new AppError('Email already exists', 409)
     }
 
     const validateData: tUserReturn = schema.parse(req.body)

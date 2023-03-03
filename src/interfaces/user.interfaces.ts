@@ -1,4 +1,4 @@
-import { TypeOf, z } from "zod";
+import { z } from "zod";
 import { createUserSchema, listUsersSchema, returnUserSchema } from "../schemas/users.schema";
 
 export type tUserCreateData = z.infer<typeof createUserSchema>

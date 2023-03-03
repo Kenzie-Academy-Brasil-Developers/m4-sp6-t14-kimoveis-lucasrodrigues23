@@ -7,16 +7,13 @@ import { AppError } from "../errors"
 import { tUserReturn } from "../interfaces/user.interfaces"
 
 export const valideteDataUpdateUserMiddleware = (schema: ZodTypeAny) => async (req: Request, res: Response, next: NextFunction) => {
-    console.log("entrei no middleware");
-    
+
     if (!req.body.email) {
-        console.log("if do email");
         let validateData: tUserReturn = schema.parse(req.body)
 
         req.body = validateData
 
         if (Object.keys(validateData).length === 0) {
-            console.log("if do validate data");
             throw new AppError('requires one of the keys: name, email, password  ', 400)
         }
 
@@ -32,7 +29,6 @@ export const valideteDataUpdateUserMiddleware = (schema: ZodTypeAny) => async (r
     })
 
     if (findUser) {
-        console.log("if da request");
         throw new AppError('Email already exists.', 409)
     }
 
@@ -41,7 +37,6 @@ export const valideteDataUpdateUserMiddleware = (schema: ZodTypeAny) => async (r
     req.body = validateData
 
     if (Object.keys(validateData).length === 0) {
-        console.log("if do validate data");
         throw new AppError('requires one of the keys: name, email, password  ', 400)
     }
 

@@ -1,6 +1,7 @@
 import { Repository } from "typeorm"
 import { AppDataSource } from "../../data-source"
 import { User } from "../../entities"
+import { AppError } from "../../errors"
 
 const softDeleteUserService = async (userId: number): Promise<void> => {
 
@@ -12,6 +13,10 @@ const softDeleteUserService = async (userId: number): Promise<void> => {
         }
     })
 
+    if (user && user.admin === true) {
+
+        throw new AppError('Insufficient Permission', 403)
+    }
     await userRepository.softRemove(user!)
 }
 

@@ -16,13 +16,13 @@ const loginService = async (userLoginData: tLoginRequestData): Promise<string> =
     })
 
     if (!user) {
-        throw new AppError('Wrong email or password', 401)
+        throw new AppError('Invalid credentials', 401)
     }
 
     const pwdMatch = await compare(userLoginData.password, user.password)
 
     if (!pwdMatch) {
-        throw new AppError('Wrong email or password', 401)
+        throw new AppError('Invalid credentials', 401)
     }
 
     const token: string = Jwt.sign(

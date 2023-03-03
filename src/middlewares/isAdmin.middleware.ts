@@ -8,7 +8,7 @@ export const isAdmin = async (req: Request, res: Response, next: NextFunction): 
     const authenticateUserAdmin = req.user.admin
 
     if (!authenticateUserAdmin) {
-        throw new AppError('Insufficient Permission', 403)
+        throw new AppError('Insufficient permission', 403)
     }
     return next()
 
