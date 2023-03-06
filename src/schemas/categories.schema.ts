@@ -9,4 +9,4 @@ export const returnCategorySchema = createCategorySchema.extend({
     id: z.number()
 })
 
-export const tListCategoriesSChema = returnCategorySchema.array()
+export const listCategoriesSChema = returnCategorySchema.array()

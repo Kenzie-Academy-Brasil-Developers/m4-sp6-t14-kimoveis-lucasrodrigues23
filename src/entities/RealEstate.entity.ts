@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne, JoinColumn, OneToMany, BeforeInsert, AfterLoad } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne, JoinColumn, OneToMany, BeforeInsert, AfterLoad, ManyToOne } from "typeorm";
 import { Address } from "./address.entity";
 import { Category } from "./category.entity";
+import { Schedule } from "./schedule.entity";
 
 @Entity('real_state')
 
@@ -23,11 +24,13 @@ export class RealEstate {
     @UpdateDateColumn()
     updatedAt: string
 
-    @OneToOne(() => Address, { nullable: true })
+    @ManyToOne(() => Category, (category) => category.id)
+    category: Category
+
+    @OneToOne(() => Address)
     @JoinColumn()
-    address?: Address | null | undefined
+    address: Address
 
-    @OneToMany(() => Category, categories => categories.id)
-    categories: Category[]
-
+    @OneToMany(() => Schedule, (schedule) => schedule.realEstate)
+    schedule: Schedule
 }

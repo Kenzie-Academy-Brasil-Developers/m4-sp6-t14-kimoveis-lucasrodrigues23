@@ -14,9 +14,9 @@ export class Schedule {
     @Column({ type: 'time' })
     hour: string
 
-    @ManyToOne(() => RealEstate, realstate => realstate.id)
-    realEstateId: RealEstate
+    @ManyToOne(() => RealEstate, realstate => realstate.schedule)
+    realEstate: RealEstate
 
     @ManyToOne(() => User, user => user.id)
-    userId: User
+    user: User
 }

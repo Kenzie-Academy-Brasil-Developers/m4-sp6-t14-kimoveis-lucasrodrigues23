@@ -1,8 +1,11 @@
 import { Router } from "express";
-import { createScheduleController, listRealStatesController } from "../controllers";
+import { createRealStateController, createScheduleController, listRealStatesController } from "../controllers";
 import { isAdmin } from "../middlewares/isAdmin.middleware";
+import { validateDataCreateRealEstate } from "../middlewares/validateDataCreateRealEstate.middleware";
+import { validateToken } from "../middlewares/validateToken.middlware";
+import { createRealEstateSchema } from "../schemas/realState.schema";
 
 export const realStateRoutes: Router = Router()
 
-realStateRoutes.post('', isAdmin, createScheduleController)
+realStateRoutes.post('', validateToken, isAdmin, validateDataCreateRealEstate(createRealEstateSchema), createRealStateController)
 realStateRoutes.get('', listRealStatesController)

@@ -23,7 +23,6 @@ export const valideteDataCreateUserMiddleware = (schema: ZodTypeAny) => async (r
     }
 
     const validateData: tUserReturn = schema.parse(req.body)
-    console.log(validateData);
 
     req.body = validateData
 
