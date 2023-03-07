@@ -41,6 +41,7 @@ export const createRealEstateService = async (realEstateData: tRealEstateCreateD
     })
 
     await realEstateRepository.save(realEstate)
+
     console.log(realEstate);
 
     const newRealEstate = retunrRealEstateSchema.parse(realEstate)

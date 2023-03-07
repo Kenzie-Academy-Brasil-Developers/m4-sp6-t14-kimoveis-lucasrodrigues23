@@ -1,12 +1,9 @@
 import { Repository } from "typeorm"
 import { AppDataSource } from "../../data-source"
-import { Category, RealEstate } from "../../entities"
+import { Category } from "../../entities"
 import { AppError } from "../../errors"
 import { tListCategoriesProperties } from "../../interfaces/category.interfaces"
-import { tListRealEstate } from "../../interfaces/realEstate.interfaces"
 import { listCategoryPropertiesSChema } from "../../schemas/categories.schema"
-import { listRealEstateSchema } from "../../schemas/realState.schema"
-
 
 export const listCategoryPropertiesService = async (catId: number): Promise<tListCategoriesProperties> => {
 
@@ -22,7 +19,7 @@ export const listCategoryPropertiesService = async (catId: number): Promise<tLis
         throw new AppError('Category not found', 404)
     }
 
-    const categoryProperties = categoryRepository.find({
+    const categoryProperties = await categoryRepository.findOne({
         where: {
             id: catId
         },
@@ -31,6 +28,7 @@ export const listCategoryPropertiesService = async (catId: number): Promise<tLis
         }
     })
 
+    console.log(categoryProperties);
 
 
     const returnCategoryProperties = listCategoryPropertiesSChema.parse(categoryProperties)
