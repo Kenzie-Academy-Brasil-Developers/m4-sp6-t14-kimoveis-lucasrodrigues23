@@ -6,7 +6,6 @@ import { tListRealEstate } from "../../interfaces/realEstate.interfaces";
 import { listRealEstateSchema } from "../../schemas/realState.schema";
 
 export const listRealStatesService = async (): Promise<tListRealEstate> => {
-    console.log('entrou na service');
 
     const realEstateRepository: Repository<RealEstate> = AppDataSource.getRepository(RealEstate)
 
@@ -16,10 +15,10 @@ export const listRealStatesService = async (): Promise<tListRealEstate> => {
             category: true
         }
     })
-    console.log(findRealEstate);
+
 
     const listRealEstate = listRealEstateSchema.parse(findRealEstate)
-    console.log('saiu da service');
+
 
     return listRealEstate
 }

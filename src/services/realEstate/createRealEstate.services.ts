@@ -21,17 +21,16 @@ export const createRealEstateService = async (realEstateData: tRealEstateCreateD
         throw new AppError("Category not exists", 404)
     }
     const findAddress: Array<Address> = await addressRepository.find()
-    console.log('antes do finde');
+
 
     if (findAddress.find(add => add.street === realEstateData.address.street && add.zipCode === realEstateData.address.zipCode)) {
         throw new AppError('Address already exists', 409)
     }
-    console.log('nao é repetido');
 
     const newAddress: Address = addressRepository.create(realEstateData.address)
 
     await addressRepository.save(newAddress)
-    console.log("address");
+ 
 
     const realEstate = realEstateRepository.create({
         value: realEstateData.value,
@@ -42,10 +41,10 @@ export const createRealEstateService = async (realEstateData: tRealEstateCreateD
 
     await realEstateRepository.save(realEstate)
 
-    console.log(realEstate);
+
 
     const newRealEstate = retunrRealEstateSchema.parse(realEstate)
-    console.log('final do service');
+
 
 
     return newRealEstate

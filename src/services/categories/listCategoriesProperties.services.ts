@@ -28,7 +28,7 @@ export const listCategoryPropertiesService = async (catId: number): Promise<tLis
         }
     })
 
-    console.log(categoryProperties);
+
 
 
     const returnCategoryProperties = listCategoryPropertiesSChema.parse(categoryProperties)

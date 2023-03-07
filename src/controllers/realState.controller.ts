@@ -10,9 +10,9 @@ export const createRealStateController = async (req: Request, res: Response): Pr
 }
 
 export const listRealStatesController = async (req: Request, res: Response): Promise<Response> => {
-    console.log('entou na controler');
+
     const listRealEstate = await listRealStatesService()
-    console.log('hello world!');
+
 
     return res.status(200).json(listRealEstate)
 }
