@@ -5,7 +5,6 @@ import { tScheduleCreateData, tScheduleReturn } from "../../interfaces/schedules
 import { returnScheduleSchema } from "../../schemas/schedules.schema"
 
 export const createSchedulesService = async (scheduleData: any): Promise<tScheduleReturn> => {
-    console.log(scheduleData);
 
     const scheduleRepository: Repository<Schedule> = AppDataSource.getRepository(Schedule)
 

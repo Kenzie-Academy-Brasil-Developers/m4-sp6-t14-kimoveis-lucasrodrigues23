@@ -21,7 +21,7 @@ export const listCategoryPropertiesController = async (req: Request, res: Respon
 
     const reqId = Number(req.params.id)
 
-    const listRealEstate = listCategoryPropertiesService(reqId)
+    const listRealEstate = await listCategoryPropertiesService(reqId)
 
     return res.status(200).json(listRealEstate)
 }

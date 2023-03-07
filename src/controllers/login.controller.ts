@@ -8,7 +8,6 @@ export const loginController = async (req: Request, res: Response): Promise<Resp
     const userLoginData: tLoginRequestData = loginSchema.parse(req.body)
 
     const token = await loginService(userLoginData)
-    console.log('controller', token);
 
     return res.status(200).json({
         token: token
