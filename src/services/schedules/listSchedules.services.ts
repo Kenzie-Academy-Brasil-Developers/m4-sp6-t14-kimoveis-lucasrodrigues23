@@ -25,7 +25,7 @@ export const listPropertiesSchedulesService = async (reqId: number) => {
             id: reqId
         }
     })
-    console.log(schedules);
+
 
     return schedules
 
