@@ -8,21 +8,21 @@ export const listPropertiesSchedulesService = async (reqId: number) => {
     const scheuleRepository: Repository<Schedule> = AppDataSource.getRepository(Schedule)
 
     const findRealEstate = await realEstateRepository.findOne({ where: { id: reqId } })
-    console.log(findRealEstate);
 
     if (findRealEstate === null) {
         throw new AppError("RealEstate not found", 404)
     }
 
-    const schedules = await scheuleRepository.findOne({
+    const schedules = await realEstateRepository.findOne({
         relations: {
-            realEstate: true,
-            user: true,
+            address: true,
+            category: true,
+            schedules: {
+                user: true
+            }
         },
         where: {
-            realEstate: {
-                id: reqId
-            }
+            id: reqId
         }
     })
     console.log(schedules);
