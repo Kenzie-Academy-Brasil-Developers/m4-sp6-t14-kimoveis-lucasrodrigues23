@@ -1,18 +1,15 @@
 import { Repository } from "typeorm"
-import { CheckMetadata } from "typeorm/metadata/CheckMetadata"
-import { date } from "zod"
 import { AppDataSource } from "../../data-source"
 import { RealEstate, Schedule, User } from "../../entities"
 import { AppError } from "../../errors"
 import { tScheduleReturn } from "../../interfaces/schedules.interfaces"
-import { loginSchema } from "../../schemas/login.schema"
 
 export const createSchedulesService = async (scheduleData: any): Promise<tScheduleReturn> => {
     const realEstateRepository: Repository<RealEstate> = AppDataSource.getRepository(RealEstate)
     const userRepository: Repository<User> = AppDataSource.getRepository(User)
     const scheduleRepository: Repository<Schedule> = AppDataSource.getRepository(Schedule)
 
-    const date = new Date(scheduleData.date).toString()
+    const date = scheduleData.date.toString()
     const hour = scheduleData.hour
     const realEstateId = scheduleData.realEstateId
     const userId = scheduleData.user
@@ -31,8 +28,7 @@ export const createSchedulesService = async (scheduleData: any): Promise<tSchedu
         .andWhere("schedule.hour = :hour", { hour })
         .andWhere("schedule.realEstateId = :realEstateId", { realEstateId })
         .getOne()
-    console.log(ScheduleRealEstateExists);
-    
+
     if (ScheduleRealEstateExists) {
         if (ScheduleRealEstateExists.user === userId) {
             throw new AppError("User schedule to this real estate at this date and time already exists", 409)
