@@ -16,6 +16,7 @@ export const listRealStatesService = async (): Promise<tListRealEstate> => {
         }
     })
 
+    console.log(findRealEstate);
 
     const listRealEstate = listRealEstateSchema.parse(findRealEstate)
 

@@ -1,16 +1,17 @@
 import { Request, Response } from "express"
 import { createSchedulesService } from "../services/schedules/createSchedule.services"
+import { listPropertiesSchedulesService } from "../services/schedules/listSchedules.services"
 
 export const createScheduleController = async (req: Request, res: Response): Promise<Response> => {
 
-    const body = { ...req.body, user: Number(req.user.id) }
+    const newSchedule = await createSchedulesService(req.body)
 
-    const newSchedule = await createSchedulesService(body)
-
-    return res.status(201).json(newSchedule)
+    return res.status(201).json({ "message": "Schedule created" })
 }
 
 export const listPropertiesSchedulesController = async (req: Request, res: Response): Promise<Response> => {
+
+    const listSchedules = listPropertiesSchedulesService(Number(req.params.id))
 
     return res.json()
 }

@@ -4,7 +4,7 @@ import { returnCategorySchema } from "./categories.schema";
 export const createAddressSchema = z.object({
     street: z.string(),
     zipCode: z.string().max(8),
-    number: z.string().optional().default('0'),
+    number: z.string().optional().default('null'),
     city: z.string(),
     state: z.string().max(2)
 })
