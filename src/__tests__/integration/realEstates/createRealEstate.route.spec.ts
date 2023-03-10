@@ -30,7 +30,7 @@ describe('POST /realEstate', () => {
     const response = await supertest(app)
       .post(baseUrl)
       .set('Authorization', `Bearer ${tokenMock.genToken(true, 1)}`)
-      .send({ ...payload, category: category.id });
+      .send({ ...payload, categoryId: category.id });
 
     const expectResults = {
       status: 201,
@@ -59,7 +59,7 @@ describe('POST /realEstate', () => {
       .send({
         ...realEstateInfo,
         address: addressInfo,
-        category: category.id,
+        categoryId: category.id,
       });
 
     const expectResults = {
@@ -89,7 +89,7 @@ describe('POST /realEstate', () => {
     const response = await supertest(app)
       .post(baseUrl)
       .set('Authorization', `Bearer ${tokenMock.genToken(true, 1)}`)
-      .send({ ...payload, category: category.id });
+      .send({ ...payload, categoryId: category.id });
 
     const expectResults = {
       status: 409,
@@ -111,7 +111,7 @@ describe('POST /realEstate', () => {
     const response = await supertest(app)
       .post(baseUrl)
       .set('Authorization', `Bearer ${tokenMock.genToken(true, 1)}`)
-      .send({ ...realEstateInfo, category: category.id });
+      .send({ ...realEstateInfo, categoryId: category.id });
 
     const expectResults = {
       status: 400,
@@ -143,7 +143,7 @@ describe('POST /realEstate', () => {
     const response = await supertest(app)
       .post(baseUrl)
       .set('Authorization', `Bearer ${tokenMock.genToken(true, 1)}`)
-      .send({ ...realEstateInfo, category: category.id });
+      .send({ ...realEstateInfo, categoryId: category.id });
 
     const expectResults = {
       status: 400,
@@ -175,7 +175,7 @@ describe('POST /realEstate', () => {
       .send({
         ...realEstateInfo,
         address: addressInfo,
-        category: category.id,
+        categoryId: category.id,
       });
 
     expect(response.status).toBe(errorsMock.forbidden.status);
@@ -197,7 +197,7 @@ describe('POST /realEstate', () => {
       .send({
         ...realEstateInfo,
         address: addressInfo,
-        category: category.id,
+        categoryId: category.id,
       });
 
     expect(response.status).toBe(errorsMock.missingBearer.status);
@@ -220,7 +220,7 @@ describe('POST /realEstate', () => {
       .send({
         ...realEstateInfo,
         address: addressInfo,
-        category: category.id,
+        categoryId: category.id,
       });
 
     expect(response.status).toBe(errorsMock.invalidSignature.status);
@@ -243,7 +243,7 @@ describe('POST /realEstate', () => {
       .send({
         ...realEstateInfo,
         address: addressInfo,
-        category: category.id,
+        categoryId: category.id,
       });
 
     expect(response.status).toBe(errorsMock.jwtMalformed.status);
