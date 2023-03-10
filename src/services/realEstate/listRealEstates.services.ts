@@ -1,7 +1,6 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { RealEstate } from "../../entities";
-
 import { tListRealEstate } from "../../interfaces/realEstate.interfaces";
 import { listRealEstateSchema } from "../../schemas/realState.schema";
 

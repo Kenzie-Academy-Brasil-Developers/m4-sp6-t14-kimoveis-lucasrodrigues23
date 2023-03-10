@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { returnCategorySchema } from "./categories.schema";
 
 export const createAddressSchema = z.object({
     street: z.string(),
@@ -16,7 +15,7 @@ export const createRealEstateSchema = z.object({
     value: z.number().min(0).or(z.string()),
     size: z.number().positive(),
     address: createAddressSchema,
-    category: z.number()
+    categoryId: z.number()
 })
 
 export const retunrRealEstateSchema = z.object({

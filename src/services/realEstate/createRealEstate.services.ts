@@ -7,11 +7,12 @@ import { retunrRealEstateSchema } from "../../schemas/realState.schema"
 
 
 export const createRealEstateService = async (realEstateData: tRealEstateCreateData): Promise<tRealEstateReturn> => {
+    console.log(realEstateData);
 
     const realEstateRepository: Repository<RealEstate> = AppDataSource.getRepository(RealEstate)
     const addressRepository: Repository<Address> = AppDataSource.getRepository(Address)
     const categoryRepository: Repository<Category> = AppDataSource.getRepository(Category)
-    const categoryId: number = Number(realEstateData.category)
+    const categoryId: number = Number(realEstateData.categoryId)
     const categoryData = await categoryRepository.findOne({
         where: {
             id: categoryId
@@ -30,7 +31,7 @@ export const createRealEstateService = async (realEstateData: tRealEstateCreateD
     const newAddress: Address = addressRepository.create(realEstateData.address)
 
     await addressRepository.save(newAddress)
- 
+
 
     const realEstate = realEstateRepository.create({
         value: realEstateData.value,
