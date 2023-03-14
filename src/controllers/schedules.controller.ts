@@ -3,7 +3,7 @@ import { createSchedulesService } from "../services/schedules/createSchedule.ser
 import { listPropertiesSchedulesService } from "../services/schedules/listSchedules.services"
 
 export const createScheduleController = async (req: Request, res: Response): Promise<Response> => {
-
+    req.body = { ...req.body, user: Number(req.user.id) }
     const newSchedule = await createSchedulesService(req.body)
 
     return res.status(201).json({ "message": "Schedule created" })
