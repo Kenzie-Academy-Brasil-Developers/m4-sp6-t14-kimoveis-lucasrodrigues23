@@ -8,6 +8,7 @@ import { returnUserSchema } from "../../schemas/users.schema"
 
 const updateUserService = async (req: Request): Promise<tUserReturn> => {
 
+        
     const userRepository: Repository<User> = AppDataSource.getRepository(User)
 
     const validateUser = await userRepository.findOne({

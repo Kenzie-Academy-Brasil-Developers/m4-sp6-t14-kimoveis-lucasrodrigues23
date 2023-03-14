@@ -7,7 +7,7 @@ import { retunrRealEstateSchema } from "../../schemas/realState.schema"
 
 
 export const createRealEstateService = async (realEstateData: tRealEstateCreateData): Promise<tRealEstateReturn> => {
-    console.log(realEstateData);
+ 
 
     const realEstateRepository: Repository<RealEstate> = AppDataSource.getRepository(RealEstate)
     const addressRepository: Repository<Address> = AppDataSource.getRepository(Address)
